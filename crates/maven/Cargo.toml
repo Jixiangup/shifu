@@ -1,0 +1,17 @@
+[package]
+name = "maven"
+version.workspace = true
+authors.workspace = true
+description.workspace = true
+homepage.workspace = true
+repository.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+
+[dependencies]
+infra.workspace = true
+
+clap.workspace = true
+dialoguer.workspace = true
+askama.workspace = true
+anyhow.workspace = true

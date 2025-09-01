@@ -1,0 +1,50 @@
+[workspace]
+members = [
+    "crates/cli", "crates/infra", "crates/maven",
+]
+
+[workspace.package]
+version = "0.1.0"
+authors = ["Jixon Liu <jixiangup@gmail.com>"]
+description = """
+shifu is a tool that can easily manage your daily development tasks.
+ It provides a simple command-line interface that allows you to create,
+ view, and manage task lists, helping you organize your work more efficiently
+ and increase productivity.
+"""
+homepage = "https://github.com/jixiangup/shifu"
+repository = "https://github.com/jixiangup/shifu"
+edition = "2024"
+rust-version = "1.89.0"
+
+[workspace.dependencies]
+cli = { path = "crates/cli" }
+maven = { path = "crates/maven" }
+infra = { path = "crates/infra" }
+
+clap = { version = "4.5.46", features = ["derive"] }
+dialoguer = { version = "0.12.0" }
+askama = { version = "0.14.0" }
+anyhow = "1.0.99"
+
+[package]
+name = "shifu"
+version.workspace = true
+authors.workspace = true
+description.workspace = true
+homepage.workspace = true
+repository.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+
+[[bin]]
+name = "shifu"
+path = "crates/core/main.rs"
+bench = false
+
+[dependencies]
+infra.workspace = true
+cli.workspace = true
+
+clap.workspace = true
+dialoguer.workspace = true
