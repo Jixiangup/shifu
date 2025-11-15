@@ -1,10 +1,12 @@
 use crate::domain::{MavenInitOptions, Packaging};
 use dialoguer::{Input, Select, theme::ColorfulTheme, Confirm};
+use tracing::info;
 use infra::FileWrite;
 use crate::template::PomTemplate;
 
 pub fn run(theme: &ColorfulTheme) -> Result<(), Box<dyn std::error::Error>> {
-    println!("Initializing a new Maven project...");
+
+    info!("Starting Maven project initialization...");
 
     let packaging_variants = &[Packaging::Jar, Packaging::War, Packaging::Pom];
 
@@ -52,6 +54,18 @@ pub fn run(theme: &ColorfulTheme) -> Result<(), Box<dyn std::error::Error>> {
     template.write("pom.xml", infra::OverwritePolicy::AskIfExists)?;
 
     // 创建src/main/java 和 src/test/java目录
+    // 判断src目录是否存在
+    let src_path = std::path::Path::new("src");
+    if !src_path.exists() {
+        std::fs::create_dir_all("src/main/java")?;
+        std::fs::create_dir_all("src/test/java")?;
+        std::fs::create_dir_all("src/main/resources")?;
+        std::fs::create_dir_all("src/test/resources")?;
+        // 创建 main
+        info!("Created directory structure: src/main/java, src/test/java, src/main/resources, src/test/resources");
+    } else {
+        info!("Directory structure already exists: src/main/java, src/test/java, src/main/resources, src/test/resources");
+    }
 
     Ok(())
 }

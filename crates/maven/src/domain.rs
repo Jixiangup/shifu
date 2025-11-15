@@ -1,6 +1,10 @@
 use std::fmt::{Display, Formatter};
 use dialoguer::theme::ColorfulTheme;
 
+pub struct ClassOptions {
+    pub author: String,
+}
+
 pub struct MavenInitOptions<'a> {
     pub theme: &'a ColorfulTheme,
     pub group_id: String,

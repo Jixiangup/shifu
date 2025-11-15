@@ -15,3 +15,5 @@ clap.workspace = true
 dialoguer.workspace = true
 askama.workspace = true
 anyhow.workspace = true
+tracing.workspace = true
+tracing-subscriber.workspace = true
